@@ -2,6 +2,7 @@
   "expo": {
     "name": "LPG",
     "slug": "lpg-app",
+    "owner": "lpgsparks-team",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -36,6 +37,11 @@
           }
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "09c956e3-9916-4cfb-be69-9687b10e276e"
+      }
+    }
   }
 }
