@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "LPG",
-    "owner":"lpgsparks-team",
+    "owner": "lpgsparks-team",
     "slug": "lpgspark",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -24,19 +24,19 @@
         "ACCESS_COARSE_LOCATION"
       ]
     },
-"plugins": [
-  "expo-location",
-  [
-    "expo-build-properties",
-    {
-      "android": {
-        "compileSdkVersion": 36,
-        "targetSdkVersion": 36,
-        "buildToolsVersion": "36.0.0"
-      }
-    }
-  ]
-]
+    "plugins": [
+      "expo-location",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 36,
+            "targetSdkVersion": 36,
+            "buildToolsVersion": "36.0.0"
+          }
+        }
+      ]
+    ],
     "extra": {
       "eas": {
         "projectId": "09c956e3-9916-4cfb-be69-9687b10e276e"
