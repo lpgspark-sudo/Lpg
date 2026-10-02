@@ -2,7 +2,7 @@
   "expo": {
     "name": "LPG",
     "owner":"lpgsparks-team",
-    "slug": "lpg-app",
+    "slug": "lpgspark",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
