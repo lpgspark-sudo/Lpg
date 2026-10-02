@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "LPG",
+    "owner":"lpgsparks-team",
     "slug": "lpg-app",
     "version": "1.0.0",
     "orientation": "portrait",
