@@ -4,8 +4,9 @@ export const colors = {
   gradientStart: '#0B3D91', // deep blue
   gradientEnd: '#1E88E5',   // lighter blue
   accent: '#FF7A00',        // flame orange (matches app icon)
-  glassFill: 'rgba(255,255,255,0.18)',
+  glassFill: 'rgba(8,30,80,0.38)',
   glassBorder: 'rgba(255,255,255,0.35)',
+  textShadow: 'rgba(0,0,0,0.45)',
   textLight: '#FFFFFF',
   textDark: '#0B1B33',
   textMuted: 'rgba(255,255,255,0.75)',
@@ -28,9 +29,15 @@ export const spacing = {
   xl: 32,
 };
 
+const shadow = {
+  textShadowColor: colors.textShadow,
+  textShadowOffset: { width: 0, height: 1 },
+  textShadowRadius: 3,
+};
+
 export const typography = {
-  h1: { fontSize: 28, fontWeight: '700', color: colors.textLight },
-  h2: { fontSize: 20, fontWeight: '600', color: colors.textLight },
-  body: { fontSize: 15, color: colors.textLight },
-  caption: { fontSize: 13, color: colors.textMuted },
+  h1: { fontSize: 28, fontWeight: '700', color: colors.textLight, ...shadow },
+  h2: { fontSize: 20, fontWeight: '600', color: colors.textLight, ...shadow },
+  body: { fontSize: 15, color: colors.textLight, ...shadow },
+  caption: { fontSize: 13, color: colors.textMuted, ...shadow },
 };
