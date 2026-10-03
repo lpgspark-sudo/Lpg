@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "LPG",
-    "slug": "lpgspark",
     "owner": "lpgsparks-team",
+    "slug": "lpgspark",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -14,7 +14,7 @@
     },
     "android": {
       "package": "com.sparklpg.lpgapp",
-      "versionCode": 3,
+      "versionCode": 4,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#0B3D91"
