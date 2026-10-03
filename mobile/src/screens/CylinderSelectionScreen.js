@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView, TextInput } from 
 import GlassBackground from '../components/GlassBackground';
 import GlassCard from '../components/GlassCard';
 import GlassButton from '../components/GlassButton';
-import { typography, spacing, colors, radius } from '../theme/theme';
+import { typography, spacing, colors } from '../theme/theme';
 import { fetchPrices } from '../services/api';
 
 const CATEGORY_TITLES = {
@@ -12,10 +12,13 @@ const CATEGORY_TITLES = {
   industrial: 'Industrial Cylinders',
 };
 
+const CUSTOM_ID = '__custom__';
+
 export default function CylinderSelectionScreen({ route, navigation }) {
   const { category } = route.params;
   const [prices, setPrices] = useState([]);
   const [selected, setSelected] = useState(null);
+  const [customWeight, setCustomWeight] = useState('');
   const [quantity, setQuantity] = useState('1');
   const [loading, setLoading] = useState(true);
 
@@ -30,20 +33,34 @@ export default function CylinderSelectionScreen({ route, navigation }) {
     })();
   }, [category]);
 
+  const isCustomSelected = selected?.id === CUSTOM_ID;
+
+  const selectCustom = () => {
+    setSelected({ id: CUSTOM_ID, label: '', price_on_request: true, custom: true });
+  };
+
   const handleContinue = () => {
     if (!selected) return;
+    if (isCustomSelected && !customWeight.trim()) return;
+
     const qty = Math.max(1, parseInt(quantity || '1', 10));
+    const cylinder = isCustomSelected
+      ? { ...selected, label: `${customWeight.trim()} kg (custom)` }
+      : selected;
+
     navigation.navigate('OrderSummary', {
       category,
-      cylinder: selected,
+      cylinder,
       quantity: qty,
     });
   };
 
+  const canContinue = selected && (!isCustomSelected || customWeight.trim().length > 0);
+
   return (
     <GlassBackground style={styles.container}>
       <Text style={typography.h1}>{CATEGORY_TITLES[category]}</Text>
-      <Text style={typography.caption}>Select size and quantity</Text>
+      <Text style={typography.caption}>Select a size, or enter your own weight below</Text>
 
       <ScrollView style={{ marginTop: spacing.md }} showsVerticalScrollIndicator={false}>
         {prices.map((item) => {
@@ -67,6 +84,35 @@ export default function CylinderSelectionScreen({ route, navigation }) {
           );
         })}
 
+        {/* Manual / custom weight entry — for sizes not in the preset list */}
+        <TouchableOpacity onPress={selectCustom} activeOpacity={0.85}>
+          <GlassCard
+            style={[styles.optionCard, isCustomSelected && styles.optionCardSelected]}
+            intensity={isCustomSelected ? 60 : 35}
+          >
+            <View style={{ flex: 1 }}>
+              <Text style={typography.h2}>Other / Custom weight</Text>
+              <Text style={typography.caption}>Enter an exact kg value not listed above</Text>
+            </View>
+            {isCustomSelected && <Text style={styles.check}>✓</Text>}
+          </GlassCard>
+        </TouchableOpacity>
+
+        {isCustomSelected && (
+          <GlassCard style={{ marginTop: spacing.sm }}>
+            <Text style={typography.h2}>Custom Weight (kg)</Text>
+            <TextInput
+              style={styles.qtyInput}
+              keyboardType="decimal-pad"
+              value={customWeight}
+              onChangeText={setCustomWeight}
+              placeholder="e.g. 25"
+              placeholderTextColor="rgba(255,255,255,0.5)"
+            />
+            <Text style={typography.caption}>Price confirmed by customer care on call</Text>
+          </GlassCard>
+        )}
+
         {!loading && selected && (
           <GlassCard style={{ marginTop: spacing.md }}>
             <Text style={typography.h2}>Quantity</Text>
@@ -82,7 +128,7 @@ export default function CylinderSelectionScreen({ route, navigation }) {
         )}
       </ScrollView>
 
-      <GlassButton label="Continue" onPress={handleContinue} disabled={!selected} />
+      <GlassButton label="Continue" onPress={handleContinue} disabled={!canContinue} />
     </GlassBackground>
   );
 }
@@ -106,6 +152,6 @@ const styles = StyleSheet.create({
     borderColor: colors.glassBorder,
     marginTop: spacing.sm,
     paddingBottom: 6,
-    width: 100,
+    width: 140,
   },
 });
