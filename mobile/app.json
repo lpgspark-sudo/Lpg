@@ -13,7 +13,7 @@
       "backgroundColor": "#0B3D91"
     },
     "android": {
-      "package": "com.sparklpg.lpgapp",
+      "package": "com.sparkslpg.lpgapp",
       "versionCode": 5,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
