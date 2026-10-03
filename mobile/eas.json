@@ -7,10 +7,6 @@
       "android": {
         "buildType": "app-bundle"
       },
-      "env": {
-        "EXPO_PUBLIC_SUPABASE_URL": "REPLACE_AT_BUILD_TIME",
-        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "REPLACE_AT_BUILD_TIME"
-      }
     },
     "preview": {
       "android": {
