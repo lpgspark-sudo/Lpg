@@ -14,7 +14,7 @@
     },
     "android": {
       "package": "com.sparkslpg.lpgapp",
-      "versionCode": 5,
+      "versionCode": 6,
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#0B3D91"
